@@ -1,1 +1,128 @@
-{% extends '_layout' %}{% block META_TITLE %}Форма связи для сайта {{ siteName }}{% endblock %}{% block META_KEYWORDS %}{{ siteName }}{% endblock %}{% block META_DESCRIPTION %}Форма связи для сайта {{ siteName }}{% endblock %}{% set page_name = craft.app.request.segments|first %}{% block head %}    {{ parent() }}{% endblock %}{% block SETTINGS %}{% endblock %}{% block header %}    {% include 'partials/_header' with {'active_page': 'contact'} %}{% endblock %}{% block pageheader %}    <div class="row">        <div class="col-md-12 align-self-center p-static order-2 text-center">            <h1 class="text-dark font-weight-bold text-8">Форма связи {{ siteName }}</h1>            <span class="text-dark sub-title">Будьте в курсе!</span>        </div>        <div class="col-md-12 align-self-center order-1">            <ul class="breadcrumb d-block text-left">                <li><a href="/">Главная</a></li>                <li class="active">Контакт</li>            </ul>        </div>    </div>{% endblock %}{% block content %}    <div class="row py-4">        <div class="col-lg-6">            <div class="overflow-hidden mb-1">                <h2 class="font-weight-normal text-7 mt-2 mb-0">                    <strong class="font-weight-extra-bold">Пишите</strong>                </h2>            </div>            <div class="overflow-hidden mb-4 pb-3">                <p class="mb-0">Не стесняйтесь спрашивать, не держите вопросы в себе!</p>            </div>            <form id="contactForm" class="contact-form" action="" method="POST" accept-charset="UTF-8">                {{ csrfInput() }}                {% if craft.app.session.hasFlash('notice') %}                    <div class="alert alert-success">                        <strong><i class="far fa-thumbs-up"></i></strong> {{ craft.app.session.getFlash('notice') }}                    </div>                {% elseif craft.app.session.hasFlash('error') %}                    <div class="alert alert-danger">                        <strong><i class="far fa-thumbs-up"></i></strong> {{ craft.app.session.getFlash('error') }}                    </div>                {% endif %}                <input type="hidden" name="action" value="contact-form/send">                {{ redirectInput('contact') }}                <input id="tro-lo-lo" name="tro-lo-lo" type="text">                {% macro errorList(errors) %}                    {% if errors %}                        <div class="contact-form-error alert alert-danger d-none mt-4" id="contactError">                            {% for error in errors %}                                <li><strong>Error!</strong> {{ error }}</li>                                <span class="mail-error-message text-1 d-block" id="mailErrorMessage"></span>                            {% endfor %}                        </div>                    {% endif %}                {% endmacro %}                {% from _self import errorList %}                <div class="form-row">                    <div class="form-group">                        <label class="required font-weight-bold text-dark text-2">Имя</label>                        <input id="from-name" type="text" name="fromName" class="form-control"                               maxlength="100" value="{{ message.fromName ?? '' }}" required>                        {{ message is defined and message ? errorList(message.getErrors('fromName')) }}                    </div>                    <div class="form-group col-lg-6">                        <label class="required font-weight-bold text-dark text-2">Emai</label>                        <input id="from-email" type="email" value="{{ message.fromEmail ?? '' }}"                               data-msg-required="Please enter your email address."                               data-msg-email="Please enter a valid email address."                               maxlength="100" class="form-control" name="fromEmail" required>                        {{ message is defined and message ? errorList(message.getErrors('fromEmail')) }}                    </div>                </div>                <div class="form-row">                    <div class="form-group col">                        <label class="required font-weight-bold text-dark text-2">Тема</label>                        <input id="subject" type="text" value="{{ message.subject ?? '' }}"                               data-msg-required="Please enter the subject."                               class="form-control" name="subject" required>                        {{ message is defined and message ? errorList(message.getErrors('subject')) }}                    </div>                </div>                <div class="form-row">                    <div class="form-group col">                        <label class="required font-weight-bold text-dark text-2">Сообщение</label>                        <textarea id="message"                                  data-msg-required="Please enter your message."                                  rows="8" class="form-control" name="message"                                  required>{{ message.message ?? '' }}</textarea>                    </div>                </div>                <div class="form-row">                    <div class="form-group col">                        <input type="submit" value="Послать" class="btn btn-primary btn-modern" data-loading-text="Loading...">                    </div>                </div>            </form>        </div>        <div class="col-lg-6">            {#<h4 class="pt-5">Get in <strong>Touch</strong></h4>            <p class="lead mb-0 text-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget leo at velit imperdiet varius. In eu ipsum vitae velit congue iaculis vitae at risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>#}        </div>    </div>{% endblock %}
+{% extends '_layout' %}
+{% block META_TITLE %}Форма связи для сайта {{ siteName }}{% endblock %}
+{% block META_KEYWORDS %}{{ siteName }}{% endblock %}
+{% block META_DESCRIPTION %}Форма связи для сайта {{ siteName }}{% endblock %}
+{% set page_name = craft.app.request.segments|first %}
+
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+
+{% block SETTINGS %}{% endblock %}
+
+{% block header %}
+    {% include 'partials/_header' with {'active_page': 'contact'} %}
+{% endblock %}
+
+{% block pageheader %}
+    <div class="row">
+        <div class="col-md-12 align-self-center p-static order-2 text-center">
+            <h1 class="text-dark font-weight-bold text-8">Форма связи {{ siteName }}</h1>
+            <span class="text-dark sub-title">Будьте в курсе!</span>
+        </div>
+
+        <div class="col-md-12 align-self-center order-1">
+            <ul class="breadcrumb d-block text-left">
+                <li><a href="/">Главная</a></li>
+                <li class="active">Контакт</li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row py-4">
+        <div class="col-lg-6">
+
+            <div class="overflow-hidden mb-1">
+                <h2 class="font-weight-normal text-7 mt-2 mb-0">
+                    <strong class="font-weight-extra-bold">Пишите</strong>
+                </h2>
+            </div>
+            <div class="overflow-hidden mb-4 pb-3">
+                <p class="mb-0">Не стесняйтесь спрашивать, не держите вопросы в себе!</p>
+            </div>
+
+            <form id="contactForm" class="contact-form" action="" method="POST" accept-charset="UTF-8">
+
+                {{ csrfInput() }}
+
+                {% if craft.app.session.hasFlash('notice') %}
+                    <div class="alert alert-success">
+                        <strong><i class="far fa-thumbs-up"></i></strong> {{ craft.app.session.getFlash('notice') }}
+                    </div>
+                {% elseif craft.app.session.hasFlash('error') %}
+                    <div class="alert alert-danger">
+                        <strong><i class="far fa-thumbs-up"></i></strong> {{ craft.app.session.getFlash('error') }}
+                    </div>
+                {% endif %}
+
+                <input type="hidden" name="action" value="contact-form/send">
+                {{ redirectInput('contact') }}
+
+                <input id="tro-lo-lo" name="tro-lo-lo" type="text">
+
+                {% macro errorList(errors) %}
+                    {% if errors %}
+                        <div class="contact-form-error alert alert-danger d-none mt-4" id="contactError">
+                            {% for error in errors %}
+                                <li><strong>Error!</strong> {{ error }}</li>
+                                <span class="mail-error-message text-1 d-block" id="mailErrorMessage"></span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endmacro %}
+
+                {% from _self import errorList %}
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="required font-weight-bold text-dark text-2">Имя</label>
+                        <input id="from-name" type="text" name="fromName" class="form-control"
+                               maxlength="100" value="{{ message.fromName ?? '' }}" required>
+                        {{ message is defined and message ? errorList(message.getErrors('fromName')) }}
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label class="required font-weight-bold text-dark text-2">Emai</label>
+                        <input id="from-email" type="email" value="{{ message.fromEmail ?? '' }}"
+                               data-msg-required="Please enter your email address."
+                               data-msg-email="Please enter a valid email address."
+                               maxlength="100" class="form-control" name="fromEmail" required>
+                        {{ message is defined and message ? errorList(message.getErrors('fromEmail')) }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label class="required font-weight-bold text-dark text-2">Тема</label>
+                        <input id="subject" type="text" value="{{ message.subject ?? '' }}"
+                               data-msg-required="Please enter the subject."
+                               class="form-control" name="subject" required>
+                        {{ message is defined and message ? errorList(message.getErrors('subject')) }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label class="required font-weight-bold text-dark text-2">Сообщение</label>
+                        <textarea id="message"
+                                  data-msg-required="Please enter your message."
+                                  rows="8" class="form-control" name="message"
+                                  required>{{ message.message ?? '' }}</textarea>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <input type="submit" value="Послать" class="btn btn-primary btn-modern" data-loading-text="Loading...">
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <div class="col-lg-6">
+            {#<h4 class="pt-5">Get in <strong>Touch</strong></h4>
+            <p class="lead mb-0 text-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget leo at velit imperdiet varius. In eu ipsum vitae velit congue iaculis vitae at risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+#}
+        </div>
+
+    </div>
+{% endblock %}
+

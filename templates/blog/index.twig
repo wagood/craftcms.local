@@ -1,1 +1,70 @@
-{% extends '_layout' %}{% block META_TITLE %}Блог сайта {{ siteName }}{% endblock %}{% block META_KEYWORDS %}{{ siteName }}{% endblock %}{% block META_DESCRIPTION %}Блог сайта {{ siteName }}{% endblock %}{% set page_name = craft.app.request.segments|first %}{% set blogQuery = craft.entries().section('blog').with(['imagePreview']).limit(5) %}{% set tagsQuery = craft.tags.all() %}{% paginate blogQuery as pageInfo, pageEntries %}{% block head %}    {{ parent() }}    {# SEO-friendly pagination links #}    {% if pageInfo.prevUrl %}<link rel="prev" href="{{ pageInfo.prevUrl }}">{% endif %}    {% if pageInfo.nextUrl %}<link rel="next" href="{{ pageInfo.nextUrl }}">{% endif %}{% endblock %}{% block SETTINGS %}{% endblock %}{% block header %}    {% include 'partials/_header' with {'active_page': 'blog'} %}{% endblock %}{% block pageheader %}    <div class="row">        <div class="col-md-12 align-self-center p-static order-2 text-center">            <h1 class="text-dark font-weight-bold text-8">Блог сайта {{ siteName }}</h1>            <span class="text-dark sub-title">Будьте в курсе!</span>        </div>        <div class="col-md-12 align-self-center order-1">            <ul class="breadcrumb d-block text-left">                <li><a href="/">Главная</a></li>                <li class="active">Блог</li>            </ul>        </div>    </div>{% endblock %}{% block content %}    <div class="row">        <div class="col-lg-3 order-lg-2">            <aside class="sidebar">                {% if tagsQuery | length %}                    <h5 class="font-weight-bold pb-1 mb-3">Теги</h5>                    <div class="mb-3 pb-1 tags">                        {% for tag in tagsQuery %}                            <a href="/blog/tags/{{ tag.title | url_encode }}">                                {{ tag.title }}                                {#<span class="badge badge-dark badge-sm badge-pill text-uppercase px-2 py-1 mr-1">                                    {{ tag.title }}                                </span>#}                            </a>&nbsp;&nbsp;                        {% endfor %}                    </div>                {% endif %}            </aside>        </div>        <div class="col-lg-9 order-lg-1">            <div class="blog-posts">                {% for entry in pageEntries %}                    {% include 'partials/_entry.list' with {'entry': entry} %}                {% endfor %}                {# ПАГИНАЦИЯ #}                {% include 'partials/_entry.pagination' with {'pageInfo': pageInfo} %}            </div>        </div>    </div>{% endblock %}
+{% extends '_layout' %}
+{% block META_TITLE %}Блог сайта {{ siteName }}{% endblock %}
+{% block META_KEYWORDS %}{{ siteName }}{% endblock %}
+{% block META_DESCRIPTION %}Блог сайта {{ siteName }}{% endblock %}
+{% set page_name = craft.app.request.segments|first %}
+{% set blogQuery = craft.entries().section('blog').with(['imagePreview']).limit(5) %}
+{% set tagsQuery = craft.tags.all() %}
+{% paginate blogQuery as pageInfo, pageEntries %}
+
+{% block head %}
+    {{ parent() }}
+    {# SEO-friendly pagination links #}
+    {% if pageInfo.prevUrl %}<link rel="prev" href="{{ pageInfo.prevUrl }}">{% endif %}
+    {% if pageInfo.nextUrl %}<link rel="next" href="{{ pageInfo.nextUrl }}">{% endif %}
+{% endblock %}
+
+{% block SETTINGS %}{% endblock %}
+
+{% block header %}
+    {% include 'partials/_header' with {'active_page': 'blog'} %}
+{% endblock %}
+
+{% block pageheader %}
+    <div class="row">
+        <div class="col-md-12 align-self-center p-static order-2 text-center">
+            <h1 class="text-dark font-weight-bold text-8">Блог сайта {{ siteName }}</h1>
+            <span class="text-dark sub-title">Будьте в курсе!</span>
+        </div>
+
+        <div class="col-md-12 align-self-center order-1">
+            <ul class="breadcrumb d-block text-left">
+                <li><a href="/">Главная</a></li>
+                <li class="active">Блог</li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-3 order-lg-2">
+            <aside class="sidebar">
+                {% if tagsQuery | length %}
+                    <h5 class="font-weight-bold pb-1 mb-3">Теги</h5>
+                    <div class="mb-3 pb-1 tags">
+                        {% for tag in tagsQuery %}
+                            <a href="/blog/tags/{{ tag.title | url_encode }}">
+                                {{ tag.title }}
+                                {#<span class="badge badge-dark badge-sm badge-pill text-uppercase px-2 py-1 mr-1">
+                                    {{ tag.title }}
+                                </span>#}
+                            </a>&nbsp;&nbsp;
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </aside>
+        </div>
+        <div class="col-lg-9 order-lg-1">
+            <div class="blog-posts">
+                {% for entry in pageEntries %}
+                    {% include 'partials/_entry.list' with {'entry': entry} %}
+                {% endfor %}
+
+                {# ПАГИНАЦИЯ #}
+                {% include 'partials/_entry.pagination' with {'pageInfo': pageInfo} %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
