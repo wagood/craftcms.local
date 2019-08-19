@@ -1,0 +1,126 @@
+{% extends '_layout' %}
+{% block META_TITLE %}{{ entry.title }}{% endblock %}
+{% block META_KEYWORDS %}{{ siteName }}{% endblock %}
+{% block META_DESCRIPTION %}Запись на тему {{ entry.title }} на сайте {{ siteName }}{% endblock %}
+
+{% set requestedSlug = craft.app.request.getSegment(2) %}
+{% set entry = craft.entries()
+    .section('blog')
+    .slug(requestedSlug|literal)
+    .with(['imagePreview'])
+    .one()
+%}
+{% set page_name = craft.app.request.segments|first %}
+{% if not entry %}
+    {% exit 404 %}
+{% endif %}
+
+{% block SETTINGS %}{% endblock %}
+
+{% block header %}
+    {% include 'partials/_header' with {'active_page': 'blog'} %}
+{% endblock %}
+
+{% block pageheader %}
+<div class="row">
+    <div class="col-md-12 align-self-center order-1">
+        <ul class="breadcrumb d-block text-left">
+            <li><a href="/">Главная</a></li>
+            <li><a href="/blog">Блог</a></li>
+            <li class="active">{{ entry.title }}</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <div class="blog-posts single-post">
+                <article class="post post-large blog-single-post border-0 m-0 p-0">
+                    {% set imagePreview = entry.imagePreview[0] ?? null %}
+                    {% if imagePreview %}
+                        <div class="post-image ml-0">
+                            <a href="{{ entry.url }}" title="{{ entry.title }}">
+                                <img src="{{ imagePreview.getUrl('crop1200x500') }}"
+                                     class="img-fluid img-thumbnail img-thumbnail-no-borders rounded-0"
+                                     alt="{{ entry.title }}" />
+                            </a>
+                        </div>
+                    {% endif %}
+                    <div class="post-date ml-0">
+                        <span class="day">{{ entry.postDate | date("d") }}</span>
+                        <span class="month">{{ entry.postDate | date("M") }} {{ entry.postDate | date("y") }}</span>
+                    </div>
+
+                    <div class="post-content ml-0">
+                        <h1 class="font-weight-bold"><a href="{{ entry.url }}">{{ entry.title }}</a></h1>
+                        <div class="post-meta">
+                            <span><i class="far fa-user"></i> By <a href="#">{{ entry.author.firstName }} {{ entry.author.lastName }}</a> </span>
+                            {% if entry.tags | length %}
+                                <span>
+                                    <i class="fas fa-tag"></i>
+                                    {% for tag in entry.tags.all() %}
+                                        <a href="/blog/tags/{{ tag.title | url_encode }}">{{  tag.title }}</a>&nbsp;&nbsp;
+                                    {% endfor %}
+                                </span>
+                            {% endif %}
+                            <span><i class="far fa-comments"></i>
+                                <span class="disqus-comment-count" data-disqus-identifier="blog-{{ entry.slug }}">Comments</span>
+                            </span>
+                        </div>
+
+                        {{ entry.textBody|doxter }}
+
+                        <div class="post-block mt-5 post-share">
+                            <h4 class="mb-3">Поделиться / сохранить</h4>
+
+                            <!-- AddThis Button BEGIN -->
+                            <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                            <div class="addthis_inline_share_toolbox"></div>
+                            <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d07939fbf3a94c2"></script>
+                            <!-- AddThis Button END -->
+
+                        </div>
+
+                        <div class="post-block mt-4 pt-2 post-author">
+                            {#<h4 class="mb-3">Автор текста</h4>#}
+                            <div class="img-thumbnail img-thumbnail-no-borders d-block pb-3">
+                                <a href="{{ entry.url }}"> {# TODO страница для автора "обо мне" #}
+                                    <img src="{{ entry.getAuthor().getPhoto().getUrl() }}" alt="Author: {{ entry.author.firstName }} {{ entry.author.lastName }}">
+                                </a>
+                            </div>
+                            <p><strong class="name"><a href="#" class="text-4 pb-2 pt-2 d-block">{{ entry.author.firstName }} {{ entry.author.lastName }}</a></strong></p>
+                            <p>{{ entry.author.userSummary }}</p>
+                        </div>
+
+                        <div id="comments" class="post-block mt-5 post-comments">
+                            <h4 class="mb-3">Comments</h4>
+                            <div id="disqus_thread"></div>
+                        </div>
+                    </div>
+                </article>
+{#@TODO следующая / предыдущая статья#}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block FOOT %}
+    <!-- Disqus Scripts -->
+    <script>
+        var disqus_config = function () {
+        this.page.url = '{{ craft.app.request.absoluteUrl }}';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'blog-' + '{{ entry.slug }}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://prestaclub-ru.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <script id="dsq-count-scr" src="//prestaclub-ru.disqus.com/count.js" async></script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+{% endblock %}

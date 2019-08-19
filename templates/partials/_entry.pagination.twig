@@ -1,0 +1,63 @@
+{% if pageInfo.totalPages > 1 %}
+<ul class="pagination float-right">
+    {% if pageInfo.prevUrl %}
+        <li class="page-item">
+            <a class="page-link" href="{{ pageInfo.firstUrl }}" title="Первая страница">
+                <i class="fas fa-angle-left"></i><i class="fas fa-angle-left"></i>
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="{{ pageInfo.prevUrl }}" title="Предыдущая страница">
+                <i class="fas fa-angle-left"></i>
+            </a>
+        </li>
+        {% else %}
+            <li class="page-item">
+                <a class="page-link" title="Это первая страница">
+                    <i class="fas fa-angle-left"></i><i class="fas fa-angle-left"></i>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" title="Это первая страница">
+                    <i class="fas fa-angle-left"></i>
+                </a>
+            </li>
+    {% endif %}
+    {% for page, url in pageInfo.getPrevUrls(3) %}
+        <li class="page-item">
+            <a class="page-link" href="{{ url }}">{{ page }}</a>
+        </li>
+    {% endfor %}
+    <li class="page-item active">
+        <a class="page-link" href="#">{{ pageInfo.currentPage }}</a>
+    </li>
+    {% for page, url in pageInfo.getNextUrls(3) %}
+        <li class="page-item">
+            <a class="page-link" href="{{ url }}">{{ page }}</a>
+        </li>
+    {% endfor %}
+    {% if pageInfo.nextUrl %}
+        <li class="page-item">
+            <a class="page-link" href="{{ pageInfo.nextUrl }}" title="Следующая страница">
+                <i class="fas fa-angle-right"></i>
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="{{ pageInfo.lastUrl }}" title="Последняя страница">
+                <i class="fas fa-angle-right"></i><i class="fas fa-angle-right"></i>
+            </a>
+        </li>
+    {% else %}
+        <li class="page-item">
+            <a class="page-link" title="Это последняя страница">
+                <i class="fas fa-angle-right"></i>
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" title="Это последняя страница">
+                <i class="fas fa-angle-right"></i><i class="fas fa-angle-right"></i>
+            </a>
+        </li>
+    {% endif %}
+</ul>
+{% endif %}

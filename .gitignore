@@ -1,0 +1,10 @@
+/.env
+/.idea
+/vendor
+.DS_Store
+/.temp
+web/assets/images/blog/
+web/images/blog/
+composer.lock
+web/assets/img/8fda6443d90160baee9138e453455fe3.ico.zip
+config/license.key
