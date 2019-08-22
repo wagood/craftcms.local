@@ -1,0 +1,488 @@
+dateModified: 1566462343
+email:
+  fromEmail: $MAIL_SMTP_USERNAME
+  fromName: $MAIL_SENDER_NAME
+  template: null
+  transportType: craft\mail\transportadapters\Smtp
+  transportSettings:
+    host: $MAIL_SMTP_HOST
+    port: $MAIL_SMTP_PORT
+    useAuthentication: '1'
+    username: $MAIL_SMTP_USERNAME
+    password: $MAIL_SMTP_PASSWORD
+    encryptionMethod: ssl
+    timeout: '10'
+fieldGroups:
+  061dd3b1-8d5d-4d01-9b90-6578ab245973:
+    name: Common
+  acdfcf8c-b303-4e29-a416-751eaf1258bd:
+    name: Blog
+  c24667a0-46ce-4d1b-8aef-e530c41562db:
+    name: Users
+fields:
+  001a924e-934b-42f5-8339-5bf746569e8a:
+    name: 'Blog Tags'
+    handle: tags
+    instructions: 'Теги для записи'
+    searchable: true
+    translationMethod: site
+    translationKeyFormat: null
+    type: craft\fields\Tags
+    settings:
+      sources: '*'
+      source: 'taggroup:8481b9c0-283a-4ca0-9e71-674904c03eee'
+      targetSiteId: null
+      viewMode: null
+      limit: null
+      selectionLabel: ''
+      localizeRelations: false
+    contentColumnType: string
+    fieldGroup: acdfcf8c-b303-4e29-a416-751eaf1258bd
+  1dbdedda-6eb2-43aa-8084-545eff492681:
+    name: 'Meta Keywords'
+    handle: metaKeywords
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: '255'
+      columnType: text
+    contentColumnType: text
+    fieldGroup: 061dd3b1-8d5d-4d01-9b90-6578ab245973
+  23e82a96-29fb-4586-9215-510236f9117d:
+    name: 'Картинка предпросмотра'
+    handle: imagePreview
+    instructions: ''
+    searchable: true
+    translationMethod: site
+    translationKeyFormat: null
+    type: craft\fields\Assets
+    settings:
+      useSingleFolder: '1'
+      defaultUploadLocationSource: 'volume:bdcb11b2-e337-47ae-a847-ea40cf5518ec'
+      defaultUploadLocationSubpath: ''
+      singleUploadLocationSource: 'volume:bdcb11b2-e337-47ae-a847-ea40cf5518ec'
+      singleUploadLocationSubpath: '{slug}'
+      restrictFiles: '1'
+      allowedKinds:
+        - image
+      sources:
+        - 'volume:bdcb11b2-e337-47ae-a847-ea40cf5518ec'
+      source: null
+      targetSiteId: null
+      viewMode: large
+      limit: '1'
+      selectionLabel: ''
+      localizeRelations: false
+    contentColumnType: string
+    fieldGroup: acdfcf8c-b303-4e29-a416-751eaf1258bd
+  2ef68eb8-e5fe-474b-85db-c4dc2f689f45:
+    name: 'User Summary'
+    handle: userSummary
+    instructions: 'Кратко о себе'
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: '1'
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: c24667a0-46ce-4d1b-8aef-e530c41562db
+  555a9c5e-5a5a-4b48-917b-617a91530fe9:
+    name: 'Meta Title'
+    handle: metaTitle
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: '70'
+      columnType: string
+    contentColumnType: string
+    fieldGroup: 061dd3b1-8d5d-4d01-9b90-6578ab245973
+  6d951a5a-1e4f-401f-85c8-60e285252fe3:
+    name: 'Текст описание'
+    handle: textSummary
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: selvinortiz\doxter\fields\DoxterField
+    settings:
+      tabSize: '2'
+      darkMode: false
+      indentWithTabs: '1'
+      enableLineWrapping: '1'
+      enableSpellChecker: ''
+      showToolbar: '1'
+      enabledToolbarIconNames:
+        bold: '1'
+        italic: '1'
+        quote: '1'
+        ordered-list: '1'
+        unordered-list: '1'
+        link: '1'
+        image: '1'
+        doxter-users: '1'
+        doxter-entries: '1'
+        doxter-assets: '1'
+        doxter-tags: '1'
+      toolbarSettings: null
+    contentColumnType: text
+    fieldGroup: acdfcf8c-b303-4e29-a416-751eaf1258bd
+  89349baa-60ae-48ba-9c8c-4e016ddd5225:
+    name: 'Meta Description'
+    handle: metaDescription
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: '150'
+      columnType: string
+    contentColumnType: string
+    fieldGroup: 061dd3b1-8d5d-4d01-9b90-6578ab245973
+  f47126c7-b956-4787-a081-edc2bdc2917e:
+    name: 'Текст записи'
+    handle: textBody
+    instructions: 'Основной текст записи'
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: selvinortiz\doxter\fields\DoxterField
+    settings:
+      tabSize: '2'
+      darkMode: false
+      indentWithTabs: ''
+      enableLineWrapping: ''
+      enableSpellChecker: ''
+      showToolbar: '1'
+      enabledToolbarIconNames:
+        bold: '1'
+        italic: '1'
+        quote: '1'
+        ordered-list: '1'
+        unordered-list: '1'
+        link: '1'
+        image: '1'
+        doxter-users: '1'
+        doxter-entries: '1'
+        doxter-assets: '1'
+        doxter-tags: '1'
+      toolbarSettings: null
+    contentColumnType: text
+    fieldGroup: acdfcf8c-b303-4e29-a416-751eaf1258bd
+globalSets:
+  e9c56096-36a3-463c-b7d7-697223044ae2:
+    name: 'Meta Tags'
+    handle: metaTags
+    fieldLayouts:
+      4e233253-34bb-4680-a064-9f699f085880:
+        tabs:
+          -
+            name: Common
+            sortOrder: 1
+            fields:
+              1dbdedda-6eb2-43aa-8084-545eff492681:
+                required: false
+                sortOrder: 2
+              555a9c5e-5a5a-4b48-917b-617a91530fe9:
+                required: false
+                sortOrder: 3
+              89349baa-60ae-48ba-9c8c-4e016ddd5225:
+                required: false
+                sortOrder: 1
+imageTransforms:
+  c776f7a8-ad5b-4404-8461-cfa13fd68847:
+    format: png
+    handle: crop1200x500
+    height: 500
+    interlace: none
+    mode: crop
+    name: 1200x500
+    position: center-center
+    quality: null
+    width: 1200
+plugins:
+  tag-manager:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  redactor:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.3.0
+  doxter:
+    edition: standard
+    enabled: true
+    schemaVersion: 3.0.0
+    settings:
+      codeBlockSnippet: '<pre><code class="language-{languageClass}">{sourceCode}</code></pre>'
+      addHeaderAnchors: '1'
+      addHeaderAnchorsTo:
+        - h1
+        - h2
+        - h3
+      startingHeaderLevel: '1'
+      addTypographyStyles: '1'
+      parseReferenceTags: '1'
+      parseShortcodes: '1'
+      enableCpTab: ''
+      pluginAlias: 'Doxter Wisiwyg'
+  contact-form:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+    settings:
+      toEmail: wagood@yandex.ru
+      prependSender: 'On behalf of'
+      prependSubject: 'New message from PRESTACLUB.RU'
+      allowAttachments: ''
+      successFlashMessage: 'Сообщение было послано'
+  contact-form-honeypot:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+    settings:
+      honeypotParam: tro-lo-lo
+  blitz:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.1.0
+    settings:
+      cachingEnabled: ''
+      includedUriPatterns:
+        -
+          - '.*'
+      excludedUriPatterns:
+        -
+          - /contact
+      cacheStorageType: putyourlightson\blitz\drivers\storage\FileStorage
+      cacheStorageSettings:
+        folderPath: cache/blitz
+      cachePurgerType: putyourlightson\blitz\drivers\purgers\DummyPurger
+      cachePurgerTypes:
+        - putyourlightson\blitz\drivers\purgers\CloudflarePurger
+      clearCacheAutomatically: '1'
+      clearCacheAutomaticallyForGlobals: true
+      warmCacheAutomatically: '1'
+      warmCacheAutomaticallyForGlobals: true
+      queryStringCaching: '0'
+      concurrency: '3'
+      apiKey: $BLITZ_API_KEY
+      cacheElements: true
+      cacheElementQueries: true
+      cacheDuration: null
+      integrations:
+        - putyourlightson\blitz\drivers\integrations\FeedMeIntegration
+        - putyourlightson\blitz\drivers\integrations\SeomaticIntegration
+      cacheControlHeader: 'public, s-maxage=0'
+      sendPoweredByHeader: true
+      outputComments: true
+  seomatic:
+    edition: standard
+    enabled: true
+    schemaVersion: 3.0.8
+    settings:
+      pluginName: SEOmatic
+      renderEnabled: true
+      sitemapsEnabled: true
+      regenerateSitemapsAutomatically: true
+      headersEnabled: true
+      environment: live
+      displayPreviewSidebar: true
+      socialMediaPreviewTarget: true
+      sidebarDisplayPreviewTypes:
+        - google
+        - twitter
+        - facebook
+      displayAnalysisSidebar: true
+      devModeTitlePrefix: '&#x1f6a7; '
+      cpTitlePrefix: '⚙ '
+      devModeCpTitlePrefix: '&#x1f6a7;⚙ '
+      separatorChar: '|'
+      maxTitleLength: 70
+      maxDescriptionLength: 155
+      siteGroupsSeparate: '1'
+      addHrefLang: true
+      addXDefaultHrefLang: true
+      generatorEnabled: true
+routes:
+  b13f3ea4-5764-4dac-881b-d4cff8f62946:
+    template: blog/_tags
+    uriParts:
+      - blog/tags/
+      -
+        - tag
+        - '[^\/]+'
+    uriPattern: 'blog/tags/<tag:[^\/]+>'
+    sortOrder: 1
+    siteUid: null
+sections:
+  1607e275-a961-4ea5-9609-3e2602397536:
+    name: Blog
+    handle: blog
+    type: channel
+    enableVersioning: true
+    siteSettings:
+      22834ccb-b203-4e25-9510-4dc0534c77ce:
+        enabledByDefault: true
+        hasUrls: true
+        uriFormat: 'blog/{slug}'
+        template: blog\_entry
+    entryTypes:
+      c3c0fa37-65d6-4b0c-8683-3af815bfbbaf:
+        name: Blog
+        handle: blog
+        hasTitleField: true
+        titleLabel: Название
+        titleFormat: ''
+        sortOrder: 1
+        fieldLayouts:
+          a35159f9-f295-4617-96af-c2937a96079a:
+            tabs:
+              -
+                name: 'Tab 1'
+                sortOrder: 1
+                fields:
+                  001a924e-934b-42f5-8339-5bf746569e8a:
+                    required: false
+                    sortOrder: 2
+                  23e82a96-29fb-4586-9215-510236f9117d:
+                    required: false
+                    sortOrder: 1
+                  6d951a5a-1e4f-401f-85c8-60e285252fe3:
+                    required: false
+                    sortOrder: 3
+                  f47126c7-b956-4787-a081-edc2bdc2917e:
+                    required: false
+                    sortOrder: 4
+              -
+                name: Common
+                sortOrder: 2
+                fields:
+                  1dbdedda-6eb2-43aa-8084-545eff492681:
+                    required: false
+                    sortOrder: 3
+                  555a9c5e-5a5a-4b48-917b-617a91530fe9:
+                    required: false
+                    sortOrder: 1
+                  89349baa-60ae-48ba-9c8c-4e016ddd5225:
+                    required: false
+                    sortOrder: 2
+    propagationMethod: all
+  d1c7ffc0-5df3-48ad-8548-9e28ef3d6166:
+    name: Homepage
+    handle: homepage
+    type: single
+    enableVersioning: true
+    siteSettings:
+      22834ccb-b203-4e25-9510-4dc0534c77ce:
+        enabledByDefault: true
+        hasUrls: true
+        uriFormat: /
+        template: index
+    entryTypes:
+      82582114-5352-47c7-8350-1ae0df928a9a:
+        name: Homepage
+        handle: homepage
+        hasTitleField: false
+        titleLabel: ''
+        titleFormat: '{section.name|raw}'
+        sortOrder: 1
+        fieldLayouts:
+          c8b783c2-b780-4177-b9b9-b1c52e58d954:
+            tabs:
+              -
+                name: Common
+                sortOrder: 1
+                fields:
+                  1dbdedda-6eb2-43aa-8084-545eff492681:
+                    required: false
+                    sortOrder: 2
+                  555a9c5e-5a5a-4b48-917b-617a91530fe9:
+                    required: false
+                    sortOrder: 3
+                  89349baa-60ae-48ba-9c8c-4e016ddd5225:
+                    required: false
+                    sortOrder: 1
+    propagationMethod: all
+siteGroups:
+  4d65e9c7-9f2f-4ce6-8d1b-8a4acd860c98:
+    name: PRESTACLUB.RU
+sites:
+  22834ccb-b203-4e25-9510-4dc0534c77ce:
+    siteGroup: 4d65e9c7-9f2f-4ce6-8d1b-8a4acd860c98
+    name: PRESTACLUB.RU
+    handle: default
+    language: ru
+    hasUrls: true
+    baseUrl: '@web'
+    sortOrder: 1
+    primary: true
+system:
+  edition: solo
+  name: PRESTACLUB.RU
+  live: true
+  schemaVersion: 3.2.16
+  timeZone: Europe/Moscow
+tagGroups:
+  8481b9c0-283a-4ca0-9e71-674904c03eee:
+    name: 'Tags for Blog'
+    handle: tagsForBlog
+users:
+  requireEmailVerification: true
+  allowPublicRegistration: false
+  defaultGroup: null
+  photoVolumeUid: 41a14422-fa26-41d2-8915-f030ad5bded3
+  photoSubpath: 'users/{username}'
+  fieldLayouts:
+    8e318025-d862-4c9d-bdb7-49751ac7dfc2:
+      tabs:
+        -
+          name: Users
+          sortOrder: 1
+          fields:
+            2ef68eb8-e5fe-474b-85db-c4dc2f689f45:
+              required: false
+              sortOrder: 1
+volumes:
+  41a14422-fa26-41d2-8915-f030ad5bded3:
+    name: 'Common Images'
+    handle: commonImages
+    type: craft\volumes\Local
+    hasUrls: true
+    url: '@web/assets/images'
+    settings:
+      path: '@webroot/assets/images/'
+    sortOrder: 2
+  bdcb11b2-e337-47ae-a847-ea40cf5518ec:
+    name: 'Blog Images'
+    handle: blogImages
+    type: craft\volumes\Local
+    hasUrls: true
+    url: '@web/images/blog'
+    settings:
+      path: '@webroot/images/blog'
+    sortOrder: 1

@@ -5,12 +5,13 @@
 
 {% set requestedSlug = craft.app.request.getSegment(2) %}
 {% set entry = craft.entries()
-    .section('blog')
-    .slug(requestedSlug|literal)
-    .with(['imagePreview'])
-    .one()
+.section('blog')
+.slug(requestedSlug|literal)
+.with(['imagePreview'])
+.one()
 %}
 {% set page_name = craft.app.request.segments|first %}
+
 {% if not entry %}
     {% exit 404 %}
 {% endif %}

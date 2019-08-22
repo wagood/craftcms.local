@@ -25,7 +25,7 @@ return [
 
         // Whether to save the project config out to config/project.yaml
         // (see https://docs.craftcms.com/v3/project-config.html)
-        'useProjectConfigFile' => false,
+        'useProjectConfigFile' => true,
 
         'limitAutoSlugsToAscii' => true,
         'errorTemplatePrefix' => '_errors/',
@@ -41,7 +41,7 @@ return [
         // Production environment settings
         'production' => [
             // Set this to `false` to prevent administrative changes from being made on production
-            'allowAdminChanges' => true,
+            'allowAdminChanges' => false,
         ],
     ],
 
@@ -49,14 +49,14 @@ return [
         'isSystemLive' => true,
         'devMode' => true,
         'enableTemplateCaching' => false,
-        'allowUpdates' => false,
+        'allowUpdates' => true,
         'disableDevmodeMinifying' => true,
     ],
 
     'prestaclub.ru' => [
         'isSystemLive' => true,
         'devMode' => false,
-        'enableTemplateCaching' => true,
+        'enableTemplateCaching' => false,
         'allowUpdates' => false,
     ],
 ];

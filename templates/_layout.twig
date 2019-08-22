@@ -7,9 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="author" content="WAGOOD@YANDEX.RU">
     {% block head %}
-        <title>{% block META_TITLE %}{{ siteName }}{% endblock %}</title>
-        <meta name="keywords" content="{% block META_KEYWORDS %}{{ siteName }}{% endblock %}" />
-        <meta name="description" content="{% block META_DESCRIPTION %}{{ siteName }}{% endblock %}">
+        {# DISABLED BECAUSE SEOMATIC #}
+        {#<title>{% block META_TITLE %}{{ siteName }}{% endblock %}</title>#}
+        {#<meta name="keywords" content="{% block META_KEYWORDS %}{{ siteName }}{% endblock %}" />#}
+        {#<meta name="description" content="{% block META_DESCRIPTION %}{{ siteName }}{% endblock %}">#}
     {% endblock %}
 
     <!-- Favicon -->
@@ -117,16 +118,6 @@
 
 <!-- Theme Initialization Files -->
 <script href="/assets/js/theme.init.js"></script>
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-375240-17', 'auto');
-    ga('send', 'pageview');
-</script>
 
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript" >
